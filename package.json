@@ -1,6 +1,6 @@
 {
   "name": "@tangro/tangro-github-toolkit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A helper and wrapper around @actions/github",
   "main": "lib/index.js",
   "scripts": {
