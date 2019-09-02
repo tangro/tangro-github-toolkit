@@ -1,0 +1,26 @@
+{
+  "name": "@tangro/tangro-github-toolkit",
+  "version": "0.0.1",
+  "description": "A helper and wrapper around @actions/github",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tangro/tangro-github-toolkit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tangro/tangro-github-toolkit/issues"
+  },
+  "homepage": "https://github.com/tangro/tangro-github-toolkit#readme",
+  "dependencies": {
+    "@actions/github": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.3",
+    "typescript": "^3.6.2"
+  }
+}
