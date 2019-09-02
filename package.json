@@ -2,9 +2,11 @@
   "name": "@tangro/tangro-github-toolkit",
   "version": "0.0.1",
   "description": "A helper and wrapper around @actions/github",
-  "main": "lib/main.js",
+  "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "npm-run-all build:*",
+    "build:clean": "rimraf lib",
+    "build:typescript": "tsc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
   },
   "devDependencies": {
     "@types/node": "^12.7.3",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.0",
     "typescript": "^3.6.2"
   }
 }
