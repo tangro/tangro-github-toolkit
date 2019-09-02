@@ -1,6 +1,6 @@
 {
   "name": "@tangro/tangro-github-toolkit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A helper and wrapper around @actions/github",
   "main": "lib/index.js",
   "scripts": {
@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/tangro/tangro-github-toolkit.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "ankri",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tangro/tangro-github-toolkit/issues"
   },
