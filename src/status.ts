@@ -1,5 +1,5 @@
 import { GitHubContext } from './context';
-import { github } from '.';
+import { github } from './github';
 
 const statusContext = 'Tangro CI';
 
