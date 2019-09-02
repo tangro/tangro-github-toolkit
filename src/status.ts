@@ -13,7 +13,7 @@ export async function setStatus({
   context: GitHubContext;
   description?: string;
   step: string;
-  target_url: string;
+  target_url?: string;
   state: 'pending' | 'success' | 'failure';
 }) {
   const [owner, repo] = context.repository.split('/');
