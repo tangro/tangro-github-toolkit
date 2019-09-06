@@ -1,11 +1,11 @@
 import { GitHubContext } from './context';
 import { github } from './github';
 
-export async function createComment({
+export async function createComment<E>({
   context,
   comment
 }: {
-  context: GitHubContext;
+  context: GitHubContext<E>;
   comment: string;
 }) {
   const [owner, repo] = context.repository.split('/');

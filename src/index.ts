@@ -1,3 +1,4 @@
+export { getCheckRunForAction, updateCheckRun } from './checks';
 export { createComment } from './comment';
 export { GitHubContext } from './context';
 export { setStatus, getStatus } from './status';

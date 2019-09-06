@@ -3,14 +3,14 @@ import { github } from './github';
 
 const statusContext = 'Tangro CI';
 
-export async function setStatus({
+export async function setStatus<E>({
   context,
   description,
   step,
   target_url,
   state
 }: {
-  context: GitHubContext;
+  context: GitHubContext<E>;
   description?: string;
   step: string;
   target_url?: string;
@@ -30,11 +30,11 @@ export async function setStatus({
   });
 }
 
-export async function getStatus({
+export async function getStatus<E>({
   context,
   step
 }: {
-  context: GitHubContext;
+  context: GitHubContext<E>;
   step: string;
 }) {
   const [owner, repo] = context.repository.split('/');

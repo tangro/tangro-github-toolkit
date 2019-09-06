@@ -27,7 +27,7 @@ export type TriggerEvent =
   | 'status'
   | 'watch';
 
-export interface GitHubContext {
+export interface GitHubContext<E> {
   ref: string;
   repository: string;
   repositoryUrl: string;
@@ -40,4 +40,5 @@ export interface GitHubContext {
   workspace: string;
   action: string;
   event_path: string;
+  event: E;
 }
