@@ -4,10 +4,12 @@ import { github } from './github';
 export async function createSuccessfulDeployment<E>({
   context,
   description,
+  environment,
   url
 }: {
   context: GitHubContext<E>;
   description: string;
+  environment: string;
   url: string;
 }): Promise<void> {
   const [owner, repo] = context.repository.split('/');
@@ -18,7 +20,7 @@ export async function createSuccessfulDeployment<E>({
     ref,
     description,
     auto_merge: false,
-    environment: 'qa',
+    environment,
     transient_environment: true,
     required_contexts: []
   });
