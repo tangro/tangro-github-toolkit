@@ -21,3 +21,7 @@ Set a status to the SHA from the `GitHubContext` Optionally add a `description` 
 ## `getStatus({ context: GitHubContext; step: string })`
 
 Try to find a status for the `GitHubContext` and with the status context `Tangro CI/${step}`.
+
+## `createSuccessfulDeployment({ context: GitHubContext, url: string, description: string})`
+
+Create a successful deployment and set the `url` and the `description` for that deployment. Under the hood it creates a deployment and automatically sets its status to `'successs'`
