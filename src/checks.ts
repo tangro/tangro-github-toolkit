@@ -1,6 +1,6 @@
 import { GitHubContext } from './context';
 import { github } from './github';
-import { ChecksUpdateParams } from '@octokit/rest';
+import { Octokit } from '@octokit/rest';
 
 export async function getCheckRunForAction<E>({
   context
@@ -37,9 +37,9 @@ export async function updateCheckRun<E>({
   checks
 }: {
   context: GitHubContext<E>;
-  checkRunId: ChecksUpdateParams['check_run_id'];
-  name: ChecksUpdateParams['name'];
-  checks: ChecksUpdateParams['output'];
+  checkRunId: Octokit.ChecksUpdateParams['check_run_id'];
+  name: Octokit.ChecksUpdateParams['name'];
+  checks: Octokit.ChecksUpdateParams['output'];
 }) {
   const [owner, repo] = context.repository.split('/');
 

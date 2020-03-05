@@ -1,5 +1,7 @@
+import * as core from '@actions/core';
 import { GitHubContext } from './context';
 import { github } from './github';
+import { Result } from './result';
 
 const statusContext = 'Tangro CI';
 
@@ -48,4 +50,39 @@ export async function getStatus<E>({
   return listOfStatuses.data.find(
     status => status.context === `${statusContext}/${step}`
   );
+}
+
+export async function wrapWithSetStatus<T>(
+  context: GitHubContext<any>,
+  step: string,
+  code: () => Promise<Result<T>>
+) {
+  await setStatus({
+    context,
+    step,
+    description: `Running ${step}`,
+    state: 'pending'
+  });
+  core.info(`Setting status to pending`);
+
+  try {
+    const result = await code();
+    await setStatus({
+      context,
+      step,
+      description: result.shortText,
+      state: result.isOkay ? 'success' : 'failure'
+    });
+    core.info(`Setting status to ${result.isOkay ? 'success' : 'failure'}`);
+    return result;
+  } catch (error) {
+    await setStatus({
+      context,
+      step,
+      description: `Failed: ${step}`,
+      state: 'failure'
+    });
+    core.info(`Setting status to failure`);
+    core.setFailed(`CI failed at step: ${step}`);
+  }
 }
