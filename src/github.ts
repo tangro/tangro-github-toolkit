@@ -1,4 +1,4 @@
-import { GitHub } from '@actions/github';
+import { getOctokit } from '@actions/github';
 
 if (!process.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN.length === 0) {
   throw new Error(
@@ -6,4 +6,4 @@ if (!process.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN.length === 0) {
   );
 }
 
-export const github = new GitHub(process.env.GITHUB_TOKEN as string);
+export const github = getOctokit(process.env.GITHUB_TOKEN as string);

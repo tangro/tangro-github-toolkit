@@ -1,6 +1,5 @@
 import { GitHubContext } from './context';
 import { github } from './github';
-import { Octokit } from '@octokit/rest';
 
 export async function getCheckRunForAction<E>({
   context
@@ -37,9 +36,9 @@ export async function updateCheckRun<E>({
   checks
 }: {
   context: GitHubContext<E>;
-  checkRunId: Octokit.ChecksUpdateParams['check_run_id'];
-  name: Octokit.ChecksUpdateParams['name'];
-  checks: Octokit.ChecksUpdateParams['output'];
+  checkRunId: number;
+  name: string;
+  checks: any; // we cannot get the correct types from the actions package. that's why we opt for any
 }) {
   const [owner, repo] = context.repository.split('/');
 

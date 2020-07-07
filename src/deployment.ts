@@ -24,7 +24,7 @@ export async function createSuccessfulDeployment<E>({
     transient_environment: true,
     required_contexts: []
   });
-  const deploymentId = response.data.id;
+  const deploymentId = (response.data as any).id; // we need the type ReposCreateDeploymentResponseData but we cannot import it, that why we cast to any beforehand
   await github.repos.createDeploymentStatus({
     owner,
     repo,
