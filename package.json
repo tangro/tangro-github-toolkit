@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/tangro/tangro-github-toolkit#readme",
   "dependencies": {
-    "@actions/core": "1.2.6",
+    "@actions/core": "1.2.7",
     "@actions/github": "4.0.0"
   },
   "devDependencies": {
