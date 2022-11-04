@@ -9,7 +9,7 @@ export async function getCheckRunForAction<E>({
   const ref = context.ref;
   const [owner, repo] = context.repository.split('/');
 
-  const checkRunsResponse = await github.checks.listForRef({
+  const checkRunsResponse = await github.rest.checks.listForRef({
     owner,
     repo,
     ref,
@@ -42,7 +42,7 @@ export async function updateCheckRun<E>({
 }) {
   const [owner, repo] = context.repository.split('/');
 
-  return github.checks.update({
+  return github.rest.checks.update({
     owner,
     repo,
     check_run_id: checkRunId,

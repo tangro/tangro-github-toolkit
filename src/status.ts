@@ -21,7 +21,7 @@ export async function setStatus<E>({
   const [owner, repo] = context.repository.split('/');
   const sha = context.sha;
 
-  await github.repos.createCommitStatus({
+  await github.rest.repos.createCommitStatus({
     context: `${statusContext}/${step}`,
     owner,
     repo,
@@ -41,7 +41,7 @@ export async function getStatus<E>({
 }) {
   const [owner, repo] = context.repository.split('/');
 
-  const listOfStatuses = await github.repos.listCommitStatusesForRef({
+  const listOfStatuses = await github.rest.repos.listCommitStatusesForRef({
     owner,
     repo,
     ref: context.sha

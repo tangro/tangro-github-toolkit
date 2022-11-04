@@ -10,7 +10,7 @@ export async function createComment<E>({
 }) {
   const [owner, repo] = context.repository.split('/');
 
-  await github.repos.createCommitComment({
+  await github.rest.repos.createCommitComment({
     body: comment,
     commit_sha: context.sha,
     owner,

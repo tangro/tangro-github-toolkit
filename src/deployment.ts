@@ -14,7 +14,7 @@ export async function createSuccessfulDeployment<E>({
 }): Promise<void> {
   const [owner, repo] = context.repository.split('/');
   const ref = context.ref.replace('refs/heads/', '');
-  const response = await github.repos.createDeployment({
+  const response = await github.rest.repos.createDeployment({
     owner,
     repo,
     ref,
@@ -25,7 +25,7 @@ export async function createSuccessfulDeployment<E>({
     required_contexts: []
   });
   const deploymentId = (response.data as any).id; // we need the type ReposCreateDeploymentResponseData but we cannot import it, that why we cast to any beforehand
-  await github.repos.createDeploymentStatus({
+  await github.rest.repos.createDeploymentStatus({
     owner,
     repo,
     deployment_id: deploymentId,
