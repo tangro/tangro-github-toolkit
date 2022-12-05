@@ -18,6 +18,7 @@ export async function setStatus<E>({
   target_url?: string;
   state: 'pending' | 'success' | 'failure';
 }) {
+  console.log(JSON.stringify(context, null, 2));
   const [owner, repo] = context.repository.split('/');
   const sha = context.sha;
 
@@ -57,32 +58,32 @@ export async function wrapWithSetStatus<T>(
   step: string,
   code: () => Promise<Result<T>>
 ) {
+  core.info(`Setting status to pending`);
   await setStatus({
     context,
     step,
     description: `Running ${step}`,
     state: 'pending'
   });
-  core.info(`Setting status to pending`);
 
   try {
     const result = await code();
+    core.info(`Setting status to ${result.isOkay ? 'success' : 'failure'}`);
     await setStatus({
       context,
       step,
       description: result.shortText,
       state: result.isOkay ? 'success' : 'failure'
     });
-    core.info(`Setting status to ${result.isOkay ? 'success' : 'failure'}`);
     return result;
   } catch (error) {
+    core.info(`Setting status to failure`);
     await setStatus({
       context,
       step,
       description: `Failed: ${step}`,
       state: 'failure'
     });
-    core.info(`Setting status to failure`);
     core.setFailed(`CI failed at step: ${step}`);
   }
 }
