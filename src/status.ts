@@ -18,7 +18,22 @@ export async function setStatus<E>({
   target_url?: string;
   state: 'pending' | 'success' | 'failure';
 }) {
-  console.log(JSON.stringify(context, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        sha: context.sha,
+        owner,
+        repo,
+        statusContext,
+        step,
+        description,
+        state,
+        target_url
+      },
+      null,
+      2
+    )
+  );
   const [owner, repo] = context.repository.split('/');
   const sha = context.sha;
 
