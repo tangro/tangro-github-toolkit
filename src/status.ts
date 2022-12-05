@@ -18,10 +18,12 @@ export async function setStatus<E>({
   target_url?: string;
   state: 'pending' | 'success' | 'failure';
 }) {
+  const [owner, repo] = context.repository.split('/');
+  const sha = context.sha;
   console.log(
     JSON.stringify(
       {
-        sha: context.sha,
+        sha,
         owner,
         repo,
         statusContext,
@@ -34,8 +36,6 @@ export async function setStatus<E>({
       2
     )
   );
-  const [owner, repo] = context.repository.split('/');
-  const sha = context.sha;
 
   await github.rest.repos.createCommitStatus({
     context: `${statusContext}/${step}`,
