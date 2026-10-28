@@ -8,10 +8,8 @@ if (!token || token.trim().length === 0) {
   );
 }
 
-export const github = getOctokit(token, {
-  request: {
-    headers: {
-      'X-GitHub-Api-Version': '2026-03-10'
-    }
-  }
+export const github = getOctokit(token);
+
+github.hook.before('request', options => {
+  options.headers['x-github-api-version'] = '2026-03-10';
 });
