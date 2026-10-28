@@ -1,4 +1,4 @@
-import { GitHubContext } from './context';
+import type { GitHubContext } from './context';
 import { github } from './github';
 
 export async function createComment<E>({

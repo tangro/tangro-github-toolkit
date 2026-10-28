@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npm-run-all build:*",
     "build:clean": "rimraf lib",
-    "build:typescript": "tsc -p tsconfig.json",
+    "build:javascript": "esbuild src/index.ts --bundle --platform=node --target=node20 --format=cjs --outfile=lib/index.js",
+    "build:typescript": "tsc -p tsconfig.json --emitDeclarationOnly",
     "release": "npm-run-all release:*",
     "release:build": "npm run build",
     "release:publish": "npm publish"
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "25.9.1",
+    "esbuild": "^0.28.2",
     "npm-run-all": "4.1.5",
     "rimraf": "6.1.3",
     "typescript": "6.0.3"

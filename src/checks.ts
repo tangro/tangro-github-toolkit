@@ -1,4 +1,4 @@
-import { GitHubContext } from './context';
+import type { GitHubContext } from './context';
 import { github } from './github';
 
 export async function getCheckRunForAction<E>({
@@ -17,7 +17,7 @@ export async function getCheckRunForAction<E>({
   });
 
   if (checkRunsResponse.data.check_runs.length === 0) {
-    throw new Error(`Could not find check run for action: ${name}`);
+    throw new Error(`Could not find an in-progress check run for ref: ${ref}`);
   } else {
     const checkRun = checkRunsResponse.data.check_runs.find(run =>
       run.name.includes('test')
@@ -38,7 +38,9 @@ export async function updateCheckRun<E>({
   context: GitHubContext<E>;
   checkRunId: number;
   name: string;
-  checks: any; // we cannot get the correct types from the actions package. that's why we opt for any
+  checks: NonNullable<
+    NonNullable<Parameters<typeof github.rest.checks.update>[0]>['output']
+  >;
 }) {
   const [owner, repo] = context.repository.split('/');
 

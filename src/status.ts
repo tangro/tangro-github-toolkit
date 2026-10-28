@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { GitHubContext } from './context';
+import type { GitHubContext } from './context';
 import { github } from './github';
 import { Result } from './result';
 
@@ -53,7 +53,7 @@ export async function getStatus<E>({
 }
 
 export async function wrapWithSetStatus<T>(
-  context: GitHubContext<any>,
+  context: GitHubContext<unknown>,
   step: string,
   code: () => Promise<Result<T>>
 ) {

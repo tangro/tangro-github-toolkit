@@ -1,4 +1,4 @@
-import { GitHubContext } from './context';
+import type { GitHubContext } from './context';
 import { github } from './github';
 
 export async function createSuccessfulDeployment<E>({
@@ -24,7 +24,10 @@ export async function createSuccessfulDeployment<E>({
     transient_environment: true,
     required_contexts: []
   });
-  const deploymentId = (response.data as any).id; // we need the type ReposCreateDeploymentResponseData but we cannot import it, that why we cast to any beforehand
+  if (!('id' in response.data)) {
+    throw new Error('GitHub did not return a deployment ID');
+  }
+  const deploymentId = response.data.id;
   await github.rest.repos.createDeploymentStatus({
     owner,
     repo,
