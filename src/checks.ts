@@ -41,7 +41,7 @@ export async function updateCheckRun<E>({
   checks: NonNullable<
     NonNullable<Parameters<typeof github.rest.checks.update>[0]>['output']
   >;
-}) {
+}): ReturnType<typeof github.rest.checks.update> {
   const [owner, repo] = context.repository.split('/');
 
   return github.rest.checks.update({
